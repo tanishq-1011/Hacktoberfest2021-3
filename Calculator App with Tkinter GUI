@@ -1,0 +1,77 @@
+from tkinter import *
+import tkinter.messagebox
+
+root= Tk()
+root.geometry("300x150")
+#root.resizable(0,0)
+root.title('CALCULATOR')
+
+color = 'gray77'
+root.configure(bg=color)
+
+x = StringVar()
+
+##########################################
+
+f1 = Frame(root,height=150, width=800, bg=color)
+f1.pack(side= TOP)
+
+f2 = Frame(root,height=150, width=800, bg=color)
+f2.pack(side= TOP)
+
+f3 = Frame(root,height=150, width=800, bg=color)
+f3.pack(side= TOP)
+
+f4 = Frame(root,height=150, width=800, bg=color)
+f4.pack(side= TOP)
+
+########################################
+l1= Label(f1,text= 'Input Number 1:', height= 2, bg=color)
+l1.pack(side= LEFT)
+
+e1= Entry(f1)
+e1.pack(side = RIGHT)
+
+
+#########################################
+l2= Label(f2,text='Input Number 2:', height= 2, bg=color)
+l2.pack(side= LEFT)
+
+e2= Entry(f2)
+e2.pack(side = RIGHT)
+
+
+
+#######################################
+
+def div():
+    if int(e2.get())!=0:
+        x.set(int(e1.get()) / int(e2.get()))
+    else:
+        tkinter.messagebox.showinfo("Error","Division by zero not possible")
+
+
+b1= Button(f3, text='+',width=8, height= 1, bg=color, command= lambda: x.set(int(e1.get()) + int(e2.get())) )
+b1.pack(side= LEFT, padx= 5)
+
+b2= Button(f3, text='-',width=8, height= 1, bg=color, command= lambda: x.set(int(e1.get()) - int(e2.get())))
+b2.pack(side= LEFT , padx= 5)
+
+b3= Button(f3, text='*',width=8, height= 1, bg=color, command= lambda: x.set(int(e1.get()) * int(e2.get())))
+b3.pack(side= LEFT, padx= 5)
+
+b4= Button(f3, text='/',width=8, height= 1, bg=color, command= div)
+b4.pack(side= LEFT, padx= 5)
+
+
+########################################
+l_res= Label(f4,text= 'Result:', height= 2, bg=color)
+l_res.pack(side= LEFT)
+
+e_res= Entry(f4, textvariable = x)
+e_res.pack(side = RIGHT)
+
+
+
+
+root.mainloop()
